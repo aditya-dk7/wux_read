@@ -1,5 +1,6 @@
 class MyRoutes {
+  static String welcomeScreenRoute = "/welcomeScreen";
+  static String initCheckScreen = "/initCheckScreen";
   static String loginRoute = "/login";
-  static String homeRoute = "/home";
   static String signUpRoute = "/signUp";
 }

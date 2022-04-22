@@ -4,6 +4,16 @@ import 'package:wux_read/network/network_request.dart';
 import 'package:wux_read/widgets/wuxia_novel_widget.dart';
 
 class HomeScreen extends StatefulWidget {
+  final String token;
+
+  const HomeScreen(this.token);
+
+  static circularProgress() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -13,9 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return GridView.count(
       primary: false,
       padding: const EdgeInsets.all(5),
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 1,
+      mainAxisSpacing: 10,
       crossAxisCount: 2,
+      childAspectRatio: (0.65),
       children: snapshot.data!.map((wuxiaNovel) {
         return GestureDetector(
           child: WuxiaNovelWidget(wuxiaNovel),
@@ -24,13 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         );
       }).toList(),
-    );
-  }
-
-  goToDetailedPage(BuildContext context, WuxiaNovel wuxiaNovel) {}
-  circularProgress() {
-    return const Center(
-      child: CircularProgressIndicator(),
     );
   }
 
@@ -43,14 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Flexible(
               child: FutureBuilder<List<WuxiaNovel>>(
-                  future: NetworkRequest.fetchWuxiaNovels(),
+                  future: NetworkRequest.fetchWuxiaNovels(widget.token),
                   builder: ((context, snapshot) {
                     if (snapshot.hasError) {
                       return Text('Error ${snapshot.error}');
                     } else if (snapshot.hasData) {
                       return gridView(snapshot);
                     }
-                    return circularProgress();
+                    return HomeScreen.circularProgress();
                   })),
             )
           ],

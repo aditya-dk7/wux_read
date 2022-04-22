@@ -10,10 +10,6 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  void onPressed() {
-    print("Works!!");
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +22,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             "assets/images/welcome_image.png",
             fit: BoxFit.cover,
           ),
-          SizedBox(height: 40.0),
+          const SizedBox(height: 40.0),
           Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -35,12 +31,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       onPressed: () {
                         Navigator.pushNamed(context, MyRoutes.signUpRoute);
                       },
-                      child: Text("New User? Register Here!")),
+                      child: const Text("New User? Register Here!")),
                   ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(context, MyRoutes.loginRoute);
                       },
-                      child: Text("Existing User? Login Here"))
+                      child: const Text("Existing User? Login Here"))
                 ],
               ))
         ],
