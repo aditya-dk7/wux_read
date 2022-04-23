@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wux_read/models/wuxia_novel_model.dart';
 import 'package:wux_read/network/network_request.dart';
+import 'package:wux_read/screens/wuxia_novel_detailed_page.dart';
 import 'package:wux_read/widgets/wuxia_novel_widget.dart';
+
+import '../utils/routes.dart';
 
 class HomeScreen extends StatefulWidget {
   final String token;
@@ -19,6 +22,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  goToDetailedPage(BuildContext context, WuxiaNovel wuxiaNovel) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WuxiaNovelDetails(wuxiaNovel),
+      ),
+    );
+  }
+
   gridView(AsyncSnapshot<List<WuxiaNovel>> snapshot) {
     return GridView.count(
       primary: false,
@@ -30,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return GestureDetector(
           child: WuxiaNovelWidget(wuxiaNovel),
           onTap: () {
-            // goToDetailedPage(context, wuxiaNovel);
+            goToDetailedPage(context, wuxiaNovel);
           },
         );
       }).toList(),

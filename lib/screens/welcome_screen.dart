@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../utils/routes.dart';
 
@@ -29,7 +30,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 children: [
                   ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, MyRoutes.signUpRoute);
+                            Fluttertoast.showToast(
+                            msg: "You can't register a user for now. Contact the developer!!!",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: Colors.white,
+                            textColor: Colors.black,
+                            fontSize: 16.0);
+
                       },
                       child: const Text("New User? Register Here!")),
                   ElevatedButton(
